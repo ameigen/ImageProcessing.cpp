@@ -10,25 +10,6 @@ bool Capture::init()
     _capture.mWidth = _width;
     _capture.mTargetBuf = new int[_capture.mHeight * _capture.mWidth];
     _selectedCam = 0;
-
-    camFramePre = SDL_CreateRGBSurface(0,
-                                        _width,
-                                        _height,
-                                        32,
-                                        0x00FF0000,
-                                        0x0000FF00,
-                                        0x000000FF,
-                                        0xFF000000);
-
-    camFramePost = SDL_CreateRGBSurface(0,
-                                        _width,
-                                        _height,
-                                        32,
-                                        0x00FF0000,
-                                        0x0000FF00,
-                                        0x000000FF,
-                                        0xFF000000);
-
     /*
     for (int i = 0; i < _camCount; i++)
     {

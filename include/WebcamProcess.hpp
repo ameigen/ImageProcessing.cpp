@@ -6,5 +6,5 @@
 
 namespace WebcamProcessing
 {
-    void processFrame(int x, int y, SDL_Surface* surface, SimpleCapParams capture);
+    void processFrame(SDL_Surface **surface, SimpleCapParams capture);
 };

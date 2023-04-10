@@ -101,24 +101,19 @@ void App::update()
     _capProcessTime();
     doCapture(_capture.getCam());
     while (isCaptureDone(_capture.getCam()) == 0) {}
-    for (int x = 0; x < _capture.getCamera()->mWidth; x++)
-    {
-        for (int y = 0; y < _capture.getCamera()->mHeight; y++)
-        {
             /*
                 Need to fix these functions, they do not 
                 currently create the frame data correctly.
             */
-            WebcamProcessing::processFrame(x, y, _capture.camFramePre , *_capture.getCamera());
-            WebcamProcessing::processFrame(x, y, _capture.camFramePost , *_capture.getCamera());
-        }
-    }
+            WebcamProcessing::processFrame(&_capture.camFramePre , *_capture.getCamera());
+            WebcamProcessing::processFrame(&_capture.camFramePost , *_capture.getCamera());
 }
 
 void App::render()
 {
-    SDL_SetRenderDrawColor(_renderer, 0, 25, 25, 255);
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(_renderer, _capture.camFramePre);
     SDL_RenderClear(_renderer);
+    SDL_RenderCopy(_renderer, texture, NULL, new SDL_Rect{((int)_windowWidth / 2) - 640, ((int)_windowHeight / 2) - 480, 640, 480});
     SDL_RenderPresent(_renderer);
 }
 

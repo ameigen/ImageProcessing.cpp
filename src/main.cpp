@@ -5,6 +5,6 @@
 
 int main()
 {
-    App app("Image Processing", 1920, 1080);
+    App app("Image Processing", 1080, 720);
     return 0;
 }
